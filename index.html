@@ -24,25 +24,62 @@
 
 <script>
   const pages = {
-    "page1": `
-      <h1>Оффер А</h1>
-      <p>Подписка на гайд</p>
-    `,
-    "page2": `
-      <h1>Оффер B</h1>
-      <p>Подписка на курс</p>
-    `
-  };
+  home: `
+    <h1>Добро пожаловать 👋</h1>
+    <p>Выбери страницу:</p>
 
-  const params = new URLSearchParams(window.location.search);
-  const pageId = params.get("pageId");
+    <button onclick="openPage('page1')">
+      📘 Подписка A
+    </button>
 
-  const app = document.getElementById("app");
+    <button onclick="openPage('page2')">
+      🎓 Подписка B
+    </button>
+  `,
 
-  app.innerHTML = pages[pageId] || `
-    <h1>Главная</h1>
-    <p>Выберите страницу</p>
-  `;
+  "page1": `
+    <h1>Страница A</h1>
+    <p>Оффер A</p>
+    <button onclick="goHome()">⬅ Назад</button>
+  `,
+
+  "page2": `
+    <h1>Страница B</h1>
+    <p>Оффер B</p>
+    <button onclick="goHome()">⬅ Назад</button>
+  `
+};
+
+const app = document.getElementById("app");
+
+// рендер страницы
+function render(pageId) {
+  app.innerHTML = pages[pageId] || pages.home;
+}
+
+// открыть страницу
+function openPage(pageId) {
+  history.pushState({ pageId }, "", `?pageId=${pageId}`);
+  render(pageId);
+}
+
+// вернуться на главную
+function goHome() {
+  history.pushState({}, "", "/");
+  render("home");
+}
+
+// обработка начальной загрузки
+const params = new URLSearchParams(window.location.search);
+const pageId = params.get("pageId") || "home";
+render(pageId);
+
+// обработка кнопок «назад» в браузере
+window.onpopstate = (e) => {
+  const page = e.state?.pageId || "home";
+  render(page);
+};
+
 </script>
 </body>
 </html>
