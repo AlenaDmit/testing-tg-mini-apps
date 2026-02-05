@@ -88,6 +88,7 @@ window.onpopstate = (e) => {
 </script> -->
 <script>
   const tg = window.Telegram.WebApp;
+  const tgData = window.Telegram.WebApp.initData
 const user = tg.initDataUnsafe.user; // Объект с данными пользователя
 let userName = document.getElementById("userName");
 userName.textContent = user.first_name;
@@ -96,7 +97,7 @@ if (user) {
     console.log("Имя:", user.first_name);
     console.log("Username:", user.username);
     console.log("Язык:", user.language_code);
-    console.log("Data:", window.Telegram.WebApp.initData)
+    console.log("Данные:", tgData);
 }
 </script>
 </body>
