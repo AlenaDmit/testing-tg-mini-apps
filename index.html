@@ -23,37 +23,25 @@
 </head>
 <body>
   <div id="app">
-    <p>Имя пользователя:</p>
-    <p id="userName"></p>
-    <p>Telegram ID:</p>
-    <p id="userTgId"></p>
   </div>
 
-<!-- <script>
+<script>
   const pages = {
   home: `
     <h1>Добро пожаловать 👋</h1>
-    <p>Выбери страницу:</p>
-
-    <button onclick="openPage('page1')">
-      📘 Подписка A
-    </button>
-
-    <button onclick="openPage('page2')">
-      🎓 Подписка B
-    </button>
+    <p>Ты на главной странице!</p>
   `,
 
   "page1": `
-    <h1>Страница A</h1>
-    <p>Оффер A</p>
-    <button onclick="goHome()">⬅ Назад</button>
+    <h1>Ты на странице 1</h1>
+    <p>Telegram ID:</p>
+    <p id="userTgId"></p>
   `,
 
   "page2": `
-    <h1>Страница B</h1>
-    <p>Оффер B</p>
-    <button onclick="goHome()">⬅ Назад</button>
+    <h1>Ты на странице 2</h1>
+    <p>Имя пользователя:</p>
+    <p id="userName"></p>
   `
 };
 
@@ -87,14 +75,13 @@ window.onpopstate = (e) => {
   render(page);
 };
 
-</script> -->
+</script>
 <script>
   const tg = window.Telegram.WebApp;
   const tgData = window.Telegram.WebApp.initData
 const user = tg.initDataUnsafe.user; // Объект с данными пользователя
 let userName = document.getElementById("userName");
 userName.textContent = user.first_name;
-
 let userTgId = document.getElementById("userTgId");
 userTgId.textContent = user.id;
 if (user) {
@@ -104,6 +91,7 @@ if (user) {
     console.log("Язык:", user.language_code);
 }
 console.log("Данные:", tgData);
+console.log("Данные ")
 </script>
 </body>
 </html>
