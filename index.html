@@ -28,20 +28,27 @@
   home: `
     <h1>Добро пожаловать 👋</h1>
     <p>Ты на главной странице!</p>
+    <p>Telegram ID:</p>
+    <p id="userTgId"></p>
+    <p>Имя пользователя:</p>
+    <p id="userName"></p>
   `,
 
   "page1": `
     <h1>Ты на странице 1</h1>
-    <p>Telegram ID:</p>
-    <p id="userTgId"></p>
   `,
 
   "page2": `
     <h1>Ты на странице 2</h1>
-    <p>Имя пользователя:</p>
-    <p id="userName"></p>
   `
 };
+
+const tg = window.Telegram.WebApp;
+const tgData = window.Telegram.WebApp.initData
+const user = tg.initDataUnsafe.user; // Объект с данными пользователя
+console.log("Данные:", tgData);
+console.log("Юзер:", user)
+console.log("ТГ:", tg)
 
 const app = document.getElementById("app");
 
@@ -73,23 +80,21 @@ window.onpopstate = (e) => {
   render(page);
 };
 
-</script>
-<script>
-  const tg = window.Telegram.WebApp;
-  const tgData = window.Telegram.WebApp.initData
-const user = tg.initDataUnsafe.user; // Объект с данными пользователя
+
+
+
 let userName = document.getElementById("userName");
 userName.textContent = user.first_name;
 let userTgId = document.getElementById("userTgId");
 userTgId.textContent = user.id;
+
 if (user) {
     console.log("ID:", user.id);
     console.log("Имя:", user.first_name);
     console.log("Username:", user.username);
     console.log("Язык:", user.language_code);
 }
-console.log("Данные:", tgData);
-console.log("Юзер:", user)
+
 </script>
 </body>
 </html>
