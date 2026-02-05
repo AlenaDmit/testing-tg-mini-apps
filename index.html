@@ -20,47 +20,29 @@
   </style>
 </head>
 <body>
+  <div id="app"></div>
 
-  <!-- Контейнеры "страниц" -->
-  <div id="page-default" class="page">
+<script>
+  const pages = {
+    "page1": `
+      <h1>Оффер А</h1>
+      <p>Подписка на гайд</p>
+    `,
+    "page2": `
+      <h1>Оффер B</h1>
+      <p>Подписка на курс</p>
+    `
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const pageId = params.get("pageId");
+
+  const app = document.getElementById("app");
+
+  app.innerHTML = pages[pageId] || `
     <h1>Главная</h1>
-    <p>Это дефолтная страница</p>
-  </div>
-
-  <div id="page-page1" class="page">
-    <h1>Страница A</h1>
-    <p>pageId = page1</p>
-  </div>
-
-  <div id="page-page2" class="page">
-    <h1>Страница B</h1>
-    <p>pageId = page2</p>
-  </div>
-
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-
-    // 1. читаем pageId из URL
-    const params = new URLSearchParams(window.location.search);
-    const pageId = params.get("pageId");
-
-    // 2. скрываем все страницы
-    document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
-
-    // 3. показываем нужную
-    if (pageId && document.getElementById(`page-${pageId}`)) {
-      document
-        .getElementById(`page-${pageId}`)
-        .classList.add("active");
-    } else {
-      document
-        .getElementById("page-default")
-        .classList.add("active");
-    }
-  </script>
-
+    <p>Выберите страницу</p>
+  `;
+</script>
 </body>
 </html>
