@@ -5,6 +5,8 @@
   <title>Mini App</title>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/telegraf@4.16.3/lib/index.min.js"></script>
+  
 
   <style>
     body {
@@ -20,9 +22,11 @@
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <p id="userName"></p>
+  </div>
 
-<script>
+<!-- <script>
   const pages = {
   home: `
     <h1>Добро пожаловать 👋</h1>
@@ -80,6 +84,18 @@ window.onpopstate = (e) => {
   render(page);
 };
 
+</script> -->
+<script>
+  const tg = window.Telegram.WebApp;
+const user = tg.initDataUnsafe.user; // Объект с данными пользователя
+let userName = document.getElementById("userName");
+userName.textContent = user.first_name;
+if (user) {
+    console.log("ID:", user.id);
+    console.log("Имя:", user.first_name);
+    console.log("Username:", user.username);
+    console.log("Язык:", user.language_code);
+}
 </script>
 </body>
 </html>
