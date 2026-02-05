@@ -25,6 +25,8 @@
   <div id="app">
     <p>Имя пользователя:</p>
     <p id="userName"></p>
+    <p>Telegram ID:</p>
+    <p id="userTgId"></p>
   </div>
 
 <!-- <script>
@@ -92,13 +94,16 @@ window.onpopstate = (e) => {
 const user = tg.initDataUnsafe.user; // Объект с данными пользователя
 let userName = document.getElementById("userName");
 userName.textContent = user.first_name;
+
+let userTgId = document.getElementById("userTgId");
+userTgId.textContent = user.id;
 if (user) {
     console.log("ID:", user.id);
     console.log("Имя:", user.first_name);
     console.log("Username:", user.username);
     console.log("Язык:", user.language_code);
-    console.log("Данные:", tgData);
 }
+console.log("Данные:", tgData);
 </script>
 </body>
 </html>
