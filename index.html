@@ -23,6 +23,7 @@
 </head>
 <body>
   <div id="app">
+    <p>Имя пользователя:</p>
     <p id="userName"></p>
   </div>
 
@@ -95,6 +96,7 @@ if (user) {
     console.log("Имя:", user.first_name);
     console.log("Username:", user.username);
     console.log("Язык:", user.language_code);
+    console.log("Data:", window.Telegram.WebApp.initData)
 }
 </script>
 </body>
