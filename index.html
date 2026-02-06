@@ -24,25 +24,6 @@
   </div>
 
 <script>
-  const pages = {
-  home: `
-    <h1>Добро пожаловать 👋</h1>
-    <p>Ты на главной странице!</p>
-    <p>Telegram ID:</p>
-    <p id="userTgId"></p>
-    <p>Имя пользователя:</p>
-    <p id="userName"></p>
-  `,
-
-  "page1": `
-    <h1>Ты на странице 1</h1>
-  `,
-
-  "page2": `
-    <h1>Ты на странице 2</h1>
-  `
-};
-
 const tg = window.Telegram.WebApp;
 const tgData = window.Telegram.WebApp.initData
 const user = tg.initDataUnsafe.user; // Объект с данными пользователя
@@ -50,57 +31,51 @@ console.log("Данные:", tgData);
 console.log("Юзер:", user)
 console.log("ТГ:", tg)
 
-// const hash = window.location.hash.slice(1);
-// console.log("hash is", hash);
 console.log("стартовый параметр", tg.initDataUnsafe.start_param)
-console.log("window location", window.location)
 
-// const hash = window.location.hash.substring(1);
-// const parameters = new URLSearchParams(hash);
+const startParam = tg.initDataUnsafe?.start_param;
+function renderPage(param) {
+  switch (param) {
+    case 'page1':
+      renderShop();
+      break;
 
-// // достаём tgWebAppData
-// const tgWebAppData = parameters.get('tgWebAppData');
+    case 'page2':
+      renderPromo();
+      break;
 
-// // декодируем
-// const decoded = decodeURIComponent(tgWebAppData);
+    case 'page3':
+      renderProfile();
+      break;
 
-// // снова парсим
-// const tgParams = new URLSearchParams(decoded);
-
-// console.log("ITOG:", tgParams.get('start_param'));
-
-
-const app = document.getElementById("app");
-
-// рендер страницы
-function render(pageId) {
-  app.innerHTML = pages[pageId] || pages.home;
+    default:
+      renderHome();
+  }
 }
 
-// открыть страницу
-function openPage(pageId) {
-  history.pushState({ pageId }, "", `?pageId=${pageId}`);
-  render(pageId);
+renderPage(startParam);
+
+function renderShop() {
+  document.body.innerHTML = '<h1>Это страница 1</h1>';
 }
 
-// вернуться на главную
-function goHome() {
-  history.pushState({}, "", "/");
-  render("home");
+function renderPromo() {
+  document.body.innerHTML = '<h1>Это страница 2</h1>';
 }
 
-// обработка начальной загрузки
-const params = new URLSearchParams(window.location.search);
-const pageId = params.get("pageId") || "home";
-render(pageId);
+function renderProfile() {
+  document.body.innerHTML = '<h1>Это страница 3</h1>';
+}
 
-// обработка кнопок «назад» в браузере
-window.onpopstate = (e) => {
-  const page = e.state?.pageId || "home";
-  render(page);
-};
-
-
+function renderHome() {
+  document.body.innerHTML = `<h1>Добро пожаловать 👋</h1>
+    <p>Ты на главной странице!</p>
+    <p>Твой Telegram ID:</p>
+    <p id="userTgId"></p>
+    <p>Твоё имя пользователя:</p>
+    <p id="userName"></p>
+    <p id="tag"></p>`;
+}
 
 
 let userName = document.getElementById("userName");
