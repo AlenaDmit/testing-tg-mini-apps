@@ -53,7 +53,13 @@ function renderPage(param) {
   }
 }
 
-renderPage(startParam);
+const initialRoute = startParam || '';
+
+renderPage(initialRoute);
+
+window.navigate = (route) => {
+  renderPage(route);
+};
 
 function renderShop() {
   document.body.innerHTML = '<h1>Это страница 1</h1>';
