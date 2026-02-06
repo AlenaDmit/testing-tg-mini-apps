@@ -50,9 +50,15 @@ console.log("Данные:", tgData);
 console.log("Юзер:", user)
 console.log("ТГ:", tg)
 
-const urlParams = new URLSearchParams(window.location.search);
-const param1 = urlParams.get('param1');
-console.log(`param is: ${param1}`)
+const hash = window.location.hash.slice(1);
+
+// Use URLSearchParams to easily parse the parameters
+const parametres = new URLSearchParams(hash);
+
+// Get the value of the 'tgWebAppStartParam'
+const startParam = parametres.get('tgWebAppStartParam'); 
+
+console.log(`param is: #{startParam}`);
 
 const app = document.getElementById("app");
 
