@@ -51,7 +51,7 @@ console.log("Юзер:", user)
 console.log("ТГ:", tg)
 
 const hash = window.location.hash.slice(1);
-console.log(`hasg is: #{hash}`);
+console.log(`hasg is: ${hash}`);
 
 // Use URLSearchParams to easily parse the parameters
 const parametres = new URLSearchParams(hash);
@@ -59,7 +59,7 @@ const parametres = new URLSearchParams(hash);
 // Get the value of the 'tgWebAppStartParam'
 const startParam = parametres.get('tgWebAppStartParam'); 
 
-console.log(`param is: #{startParam}`);
+console.log(`param is: ${startParam}`);
 
 const app = document.getElementById("app");
 
