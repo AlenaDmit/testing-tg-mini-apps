@@ -52,22 +52,22 @@ console.log("ТГ:", tg)
 
 // const hash = window.location.hash.slice(1);
 // console.log("hash is", hash);
-// console.log("стартовый параметр", tg.initDataUnsafe.start_param)
+console.log("стартовый параметр", tg.initDataUnsafe.start_param)
 console.log("window location", window.location)
 
-const hash = window.location.hash.substring(1);
-const parameters = new URLSearchParams(hash);
+// const hash = window.location.hash.substring(1);
+// const parameters = new URLSearchParams(hash);
 
-// достаём tgWebAppData
-const tgWebAppData = parameters.get('tgWebAppData');
+// // достаём tgWebAppData
+// const tgWebAppData = parameters.get('tgWebAppData');
 
-// декодируем
-const decoded = decodeURIComponent(tgWebAppData);
+// // декодируем
+// const decoded = decodeURIComponent(tgWebAppData);
 
-// снова парсим
-const tgParams = new URLSearchParams(decoded);
+// // снова парсим
+// const tgParams = new URLSearchParams(decoded);
 
-console.log("ITOG:", tgParams.get('start_param'));
+// console.log("ITOG:", tgParams.get('start_param'));
 
 
 const app = document.getElementById("app");
